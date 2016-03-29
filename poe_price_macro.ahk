@@ -3,55 +3,10 @@
 ;
 ; Written by Pete Waterman aka trackpete on reddit, pwx* in game
 ; http://exiletools.com (used to be http://poe.pwx.me)
-;
-; CONFIGURATION NOTE: You must configure the LeagueName properly. Otherwise it will default to
-; "Standard" - press ^F and search for LeagueName and you will find where to set it.
-;
+
 ; For a list of valid leagues, go here and scroll down to "Active Leagues:"
 ; http://api.exiletools.com/ladder
-;
-; USAGE NOTE: This requires your Path of Exile to be in Windowed (or Windowed Full Screen) 
-; to work properly, otherwise the popup will just show in the background and you won't
-; see it. Also, you *must* use the AHK from http://ahkscript.org NOT NOT autohotkey.com!
-;
-; WINDOWS 10 NOTE: You may need to run this .ahk file as an Administrator in order for the popups
-; to show properly. 
-;
-; INDEXER NOTE: I do not use poe.trade in any way. I run my own indexer, which lets me
-; provide far more in-depth and advanced statistics than I could get from using 
-; poe.trade. The results will not always exactly match poe.trade. You can read more 
-; about this here: http://exiletools.com/blog
-;
-; CURRENCY NOTE: The "Chaos" values you see in this data are "Chaos Equivalent Values."
-; These values are *FIXED* and do not fluctuate with the actual rates you will get
-; in trade/etc. They are for *reference* only, because people hated this macro when it
-; returned prices in a bunch of different currency types. You can see the rates I
-; use to create these reference values here: http://exiletools.com/rates
-;
-; AUTHOR'S NOTE: I'm not an AHK programmer, I learned everything on the fly. There is a
-; good chance this code will look sloppy to experienced AHK programmers, if you have any
-; advice or would like to re-write it, please feel free and let me know. 
-;
-; Wow, I clearly need to add some more NOTES. Maybe a NOTE on the weather? It's raining
-; outside right now. 
-;
-; ===================================================
-; Change Log
-; v1 (2014/07/29): Initial Release
-; v2 (2014/08/18): +Features
-; v3 (2014/08/19): +Features
-; v4 (2014/09/25): +Features
-; v5 (2015/07/06): An all-new release!
-; v5.1 (2015/08/11): Added proper encoding for item post data so my server sees + signs
-;
-;   Version 5 works in a completely different way from previous versions:
-;   It now sends the raw item data to my service via POST and simply displays the results.
-;
-;   The big reason for this is that I can now do all item processing server-side. This allows
-;   me to increment parsing options, such as adding Divination Card capability/etc., without
-;   needing to push new versions to clients.
-;
-;
+
 
 ; == Startup Options ===========================================
 #SingleInstance force
@@ -59,7 +14,7 @@
 #Persistent ; Stay open in background
 SendMode Input 
 StringCaseSense, On ; Match strings with case.
-Menu, tray, Tip, Exile Tools Price Check
+#NoTrayIcon
 
 If (A_AhkVersion <= "1.1.22")
 {
@@ -80,10 +35,7 @@ If (A_AhkVersion <= "1.1.22")
 ; Make sure all other LeagueName lines have a ; in front of them (commented)
 ; or are removed
 
-global LeagueName := "warbands"
-;global LeagueName := "tempest"
-;global LeagueName := "standard"
-;global LeagueName := "hardcore"
+global LeagueName := "perandushc"
 
 ; showDays - This filters results to items that are in shops which have been updated
 ; without the last # of days. The default is 7. There is not really any need to change
@@ -123,6 +75,7 @@ IfWinActive, Path of Exile ahk_class Direct3DWindowClass
 return
 
 ; Custom Input String Search
+/* Commented Out interactive mode
 ^i::
 IfWinActive, Path of Exile ahk_class Direct3DWindowClass 
 {
@@ -145,7 +98,7 @@ IfWinActive, Path of Exile ahk_class Direct3DWindowClass
   }
 }
 return
-
+*/
 
 ; == Function Stuff =======================================
 
